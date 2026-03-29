@@ -1,0 +1,71 @@
+openapi: 3.0.0
+info:
+  title: 'Racoin API'
+  description: 'API REST pour les annonces Racoin.'
+  version: 1.0.0
+servers:
+  -
+    url: /api
+    description: 'Base API path'
+paths:
+  /annonces:
+    get:
+      tags:
+        - Annonces
+      summary: 'Lister les annonces'
+      operationId: listAnnonces
+      responses:
+        '200':
+          description: 'Liste des annonces'
+  '/annonce/{id}':
+    get:
+      tags:
+        - Annonces
+      summary: 'Recuperer une annonce par son identifiant'
+      operationId: getAnnonce
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Annonce trouvee'
+        '404':
+          description: 'Annonce introuvable'
+  /categories:
+    get:
+      tags:
+        - Categories
+      summary: 'Lister les categories'
+      operationId: listCategories
+      responses:
+        '200':
+          description: 'Liste des categories'
+  '/categorie/{id}':
+    get:
+      tags:
+        - Categories
+      summary: 'Recuperer une categorie avec ses annonces'
+      operationId: getCategorie
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Categorie trouvee'
+        '404':
+          description: 'Categorie introuvable'
+tags:
+  -
+    name: Annonces
+    description: 'Consultation des annonces'
+  -
+    name: Categories
+    description: 'Consultation des categories'
